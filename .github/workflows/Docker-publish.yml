@@ -87,6 +87,9 @@ jobs:
           script: |
             DEPLOY_PATH = "/home/${{secrets.SSH_USER}}/deploy"
             cd $DEPLOY_PATH
+            #Detener y limpiar servicios
+            sudo docker-compose down
+
             # Descargar la img desde DockerHub
             echo ${{secrets.DOCKER_PASSWORD}} | sudo docker login -u ${{secrets.DOCKER_USER}} --password-stdin
 
