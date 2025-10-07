@@ -1,0 +1,9 @@
+version: '3.8'
+services: 
+  web:
+    image: gadiel821/univalle-repprueva:latest #repo dockerhub
+    container_name: prueba-vm-oci
+    ports:
+      - "80:80" #mapa eñ puerto del contenedor al puerto 80
+    restart: always
+    
