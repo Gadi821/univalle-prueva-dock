@@ -63,13 +63,13 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
 
           script: |
-            chmod +x /tmp/setup_vm.sh
-            /tmp/setup_vm.sh ${{secrets.SSH_USER}}
-            rm /tmp/setup_vm.sh #eliminar script por seguridad
+            chmod +x ~/tmp/setup_vm.sh
+            ~/tmp/setup_vm.sh ${{secrets.SSH_USER}}
+            rm ~/tmp/setup_vm.sh #eliminar script por seguridad
       
       #4 copiar docker-compose a la VM de OCI 
       - name: copiar docker-compose a la VM OCI
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USER}}
