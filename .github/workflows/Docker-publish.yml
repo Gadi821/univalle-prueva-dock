@@ -25,7 +25,7 @@ jobs:
         run: docker push ${{secrets.DOCKER_USER}}/univalle-repprueva:latest  
 
   deploy: 
-    needs: build-and-push
+    needs: build-abd-push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout codigo(obtener el docker-compose.yml, setup_vm.sh)
@@ -50,7 +50,7 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
 
           source: "setup_vm.sh"
-          target: "~/tmp/"
+          target: "/tmp/"
       
       #3 ejecutar script de config en la VM
 
@@ -63,8 +63,8 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
 
           script: |
-            chmod +x ~/tmp/setup_vm.sh
-            ~/tmp/setup_vm.sh ${{secrets.SSH_USER}}
+            chmod +x /tmp/setup_vm.sh
+            /tmp/setup_vm.sh ${{secrets.SSH_USER}}
             rm /tmp/setup_vm.sh #eliminar script por seguridad
       
       #4 copiar docker-compose a la VM de OCI 
